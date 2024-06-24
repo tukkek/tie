@@ -4,7 +4,7 @@ Like a simple knot, this small Javascript library aims to reactively tie togethe
 
 It is a minimalistic, opinionated[^opinionated] library but it is based on the native design of the `<template>` tag and HTML as a whole and as such should feel familiar to any web developer and integrate seamlessly with other technologies such as CSS and other frameworks, libraries and tool-chains.
 
-Tie is a 100% native Javascript library. No servers, builds, frameworks... required. However, as stated, it should integrate easily into any setups you have or want.
+Tie is a 100% pure Javascript library. No servers, builds, frameworks... required. However, as stated it should integrate easily into any setups you have or want.
 
 While perfectly adequate for most use-cases, Tie has not yet been optimized for speed but due to its minimalistic nature, this should be easy to achieve. If you're interested in improving Tie for high-performance scenarios, a pull-request is welcome.
 
