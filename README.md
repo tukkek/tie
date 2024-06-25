@@ -2,13 +2,14 @@
 
 Like a simple knot, this small Javascript library aims to reactively tie together the declarative HTML and programmatic Javascript layers of a web-page. In specific, one-directional reactivity where new Javascript instances are rendered as new DOM element sub-trees and then changes to their property values are rendered to those same elements.
 
-It is a minimalistic, opinionated[^O] library but it is based on the native design of the `<template>` tag and HTML as a whole and as such should feel familiar to any web developer and integrate seamlessly with other technologies such as CSS and other frameworks, libraries and tool-chains.
+It is a minimalistic, opinionated[^O] library but it is based on the native design of the `<template>` tag and object-oriented-programming[^OOP] and as such should feel familiar to any web developer and integrate seamlessly with other technologies such as CSS and other frameworks, libraries and tool-chains.
 
 Tie is a 100% pure Javascript library. No servers, builds, frameworks... However, as stated it should integrate easily into any setups you have or want.
 
 While perfectly adequate for most use-cases, Tie has not yet been optimized for speed but due to its minimalistic nature, this should be easy to achieve. If you're interested in improving Tie for high-performance scenarios, a pull-request is welcome.
 
 [^O]: *What makes software opinionated?* https://imkylelambert.com/articles/opinionated-software
+[^OOP]: *Using classes* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 
 ## Installing
 
