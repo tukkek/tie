@@ -11,15 +11,31 @@ class Result{
   }
   
   static show(race){
+    // Handle new instance of the "result" template
+    // (the clone element is exposed as view.root):
     let view=new tie.Template('.result')
+    // Append the clone to template's parent element:
     view.create()
+    // Register call-back for all interactive elements
+    // (view.remove() is short for view.root.remove()):
     view.react(()=>view.remove())
+    // Same effect as above but target a single element
+    // (the event used depends on element, here "click"):
+    view.listen('button',()=>view.remove())
+    // view.select() is short for view.root.querySelector():
+    let list=view.select('ol')
+    // Same as above, short for view.root.querySelectorAll():
+    list=view.selectAll('ol')[0]
     for(let t of race.times){
+      // Clone new instance for the "time" template:
       let item=new tie.Template('.time')
-      item.create(view.select('ol'))
+      // Append, this time using an explicit parent:
+      item.create(list)
       let seconds=t.time.toFixed(1)
       let n=t.horse.name
       let text=`${n} finished in ${seconds} seconds.`
+      // The exposed root element lets you write POJO code!
+      // https://en.wikipedia.org/wiki/Plain_old_Java_object
       item.root.textContent=text
     }
   }

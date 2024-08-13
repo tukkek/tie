@@ -4,30 +4,28 @@ const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
 export class Template{
   constructor(selector){
     selector=`template${selector}`
-    let t=document.querySelector(selector)
-    if(!t) throw `Cannot find template "${selector}"!`
-    this.element=t
-    this.root=false
+    let template=document.querySelector(selector)
+    if(!template) throw `Cannot find template "${selector}"!`
+    this.element=template
+    let root=template.content.children[0].cloneNode(true)
+    root.classList.add('tie')
+    this.root=root
   }
   
   create(parent=false){
-    this.root=this.element.content.children[0].cloneNode(true)
-    this.root.classList.add('tie')
     if(!parent) parent=this.element.parentNode
     parent.appendChild(this.root)
     return this
   }
   
-  listen(selector,callback,kind=false){
+  listen(selector,callback){
     let v=this.root.querySelector(selector)
-    if(!kind) kind=DEFAULTS.get(v.tagName)
-    v.addEventListener(kind,callback)
+    v.addEventListener(DEFAULTS.get(v.tagName),callback)
   }
   
-  deafen(selector,callback,kind=false){
+  deafen(selector,callback){
     let v=this.root.querySelector(selector)
-    if(!kind) kind=DEFAULTS.get(v.tagName)
-    v.removeEventListener(kind,callback)
+    v.removeEventListener(DEFAULTS.get(v.tagName),callback)
   }
   
   react(callback){
@@ -44,9 +42,9 @@ export class Template{
   
   select(selector){return this.root.querySelector(selector)}
   
-  selectall(selector){return this.root.querySelectorAll(selector)}
+  selectAll(selector){return this.root.querySelectorAll(selector)}
   
-  selectAll(selector){return this.selectall(selector)}
+  selectall(selector){return this.selectall(selector)}
   
   remove(){this.root.remove()}
   
