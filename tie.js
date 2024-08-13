@@ -1,6 +1,8 @@
 /** 
- * Determines per-element event types for "template.listen()", 
- * "template.deafen()", "template.react()" and "template.ignore()".
+ * Determines per-element default listener event types for 
+ * "template.listen()", * "template.deafen()", "template.react()" 
+ * and "template.ignore()". 
+ * 
  * The supported elements (and event types) are:
  * 
  * <ul>
@@ -109,8 +111,8 @@ export class Template{
   remove(){this.root.remove()}
   
   /** 
-   * Use this to alter a standard HTML attribute (suce as an anchor's "href")
-   * or to )store data in an attribute declared anywhere in your sub-tree. 
+   * Use this to alter a standard HTML attribute (such as an anchor's "href")
+   * or to store data in an attribute declared anywhere in your sub-tree. 
    * This can be useful in many cases, such as for selecting the element
    * with the CSS query: "*[attribute='value']". 
    * 
