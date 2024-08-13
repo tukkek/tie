@@ -17,7 +17,7 @@ There are multiple ways to install Tie. You can:
 * Download the latest version as a script (right-click and save-as): https://raw.githubusercontent.com/tukkek/tie/main/tie.js
 * Import the latest version directly from a module: `import * as tie from 'https://tukkek.github.io/tie/tie.js'`
 
-# Performance
+## Performance
 
 Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of its methods, so performance should be typical for most Java-script scenarios. If that's not enough, a cached version[^C] should be twice as fast.
 
@@ -31,4 +31,9 @@ The comments in these two sections of code should provide a good overview of Tie
 1. First this HTML section that defines two templates and their one-to-many relationship: https://github.com/tukkek/tie/blob/main/demonstration/index.html#L21
 2. Then this Java-script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstration/race.js#L13
 
-The full demonstration code is here: https://github.com/tukkek/tie/tree/main/demonstration
+The full demonstration code is here: https://github.com/tukkek/tie/tree/main/demonstration/
+
+## Docementation
+
+- The full `Template` class API can be found here: https://tukkek.github.io/tie/documentation/Template.html
+- The element and event types supported by `template.listen()` and `template.react()` are listed here: https://tukkek.github.io/tie/documentation/global.html
