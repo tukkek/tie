@@ -43,7 +43,6 @@ class Horse{
     if(this.finished) return
     this.step+=Math.random()
     this.view.set('step',Math.floor(this.step))
-    console.log(this.name,this.view.get('step'))
     if(!this.finished) return
     race.times.push(new Result(this,race.time))
   }

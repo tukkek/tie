@@ -1,3 +1,6 @@
+const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
+                        ['BUTTON','click'],])
+
 export class Template{
   constructor(selector){
     selector=`template${selector}`
@@ -15,34 +18,28 @@ export class Template{
     return this
   }
   
-  listen(selector,callback,kind='change'){
+  listen(selector,callback,kind=false){
     let v=this.root.querySelector(selector)
+    if(!kind) kind=DEFAULTS.get(v.tagName)
     v.addEventListener(kind,callback)
   }
   
-  deafen(selector,callback,kind='change'){
+  deafen(selector,callback,kind=false){
     let v=this.root.querySelector(selector)
+    if(!kind) kind=DEFAULTS.get(v.tagName)
     v.removeEventListener(kind,callback)
   }
   
   react(callback){
-    let r=this.root
-    for(let i of r.querySelectorAll('input'))
-      i.addEventListener('change',callback)
-    for(let a of r.querySelectorAll('textarea'))
-      a.addEventListener('change',callback)
-    for(let b of r.querySelectorAll('button'))
-      b.addEventListener('click',callback)
+    for(let d of DEFAULTS.keys()) 
+      for(let element of this.root.querySelectorAll(d))
+        element.addEventListener(DEFAULTS.get(d),callback)
   }
   
   ignore(callback){
-    let r=this.root
-    for(let i of r.querySelectorAll('input'))
-      i.removeEventListener('change',callback)
-    for(let a of r.querySelectorAll('textarea'))
-      a.removeEventListener('change',callback)
-    for(let b of r.querySelectorAll('button'))
-      b.removeEventListener('click',callback)
+    for(let d of DEFAULTS.keys())
+      for(let element of this.root.querySelectorAll(d))
+        element.removeEventListener(DEFAULTS.get(d),callback)
   }
   
   select(selector){return this.root.querySelector(selector)}
