@@ -18,14 +18,24 @@
   </div></template>
 </div>
 
+<!-- A template's parent element is used by default as container for its clones -->
 <div id='results'>
-  <template class='result'><div class='result'>
-    <strong>Race results:</strong>
-    <ol class='result'>
-      <template class='time'><li></li></template>
-    </ol>
-    <button>Remove these results</button>
-  </div></template>
+  <!-- A "result" template that records the results for each new race -->
+  <template class='result'>
+    <!-- Each template needs a single root child: here it's a "div" -->
+    <div class='result'>
+      <strong>Race results:</strong>
+      <!-- A list to store every horses' results for a given race. -->
+      <ol>
+        <!-- A "time" template to record each horse's finish time -->
+        <template class='time'>
+          <!-- Here the one root child is also the only element -->
+          <li></li>
+        </template>
+      </ol>
+      <button>Remove these results</button>
+    </div>
+  </template>
 </div>
 
 <script type='module'>
