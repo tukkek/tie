@@ -1,0 +1,87 @@
+#header{
+  display:grid;
+  grid-gap:1em;
+}
+#header .controls{
+  display:flex;
+  gap:1em;
+  margin:0 2em;
+}
+#header .controls input{
+  width:5em;
+  text-align:center;
+}
+#header .controls button{
+  padding:0 2em;
+}
+#tracks{
+  margin:2em;
+  display:grid;
+}
+#tracks{
+  border:solid black .2em;
+  border-radius:1em;
+  background-color:sandybrown;
+}
+#tracks .track.tie{
+  border-bottom:solid black .2em;
+  padding:1em 1em;
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-columns:max-content auto;
+}
+#tracks .track.tie:last-child{
+  border-bottom:none;
+}
+#tracks .track.tie .name{
+  font-weight:bold;
+}
+#tracks .track.tie .horse{
+  position:relative;
+  font-size:large;
+  transition:.5s left;
+}
+#tracks .track.tie .horse .flipped{
+  transform:scaleX(-1);
+  display:inline-block;
+}
+#tracks .track.tie .horse[step='1']{left:0%;}
+#tracks .track.tie .horse[step='2']{left:5%;}
+#tracks .track.tie .horse[step='3']{left:10%;}
+#tracks .track.tie .horse[step='4']{left:15%;}
+#tracks .track.tie .horse[step='5']{left:20%;}
+#tracks .track.tie .horse[step='6']{left:25%;}
+#tracks .track.tie .horse[step='7']{left:30%;}
+#tracks .track.tie .horse[step='8']{left:35%;}
+#tracks .track.tie .horse[step='9']{left:40%;}
+#tracks .track.tie .horse[step='10']{left:45%;}
+#tracks .track.tie .horse[step='11']{left:50%;}
+#tracks .track.tie .horse[step='12']{left:55%;}
+#tracks .track.tie .horse[step='13']{left:60%;}
+#tracks .track.tie .horse[step='14']{left:65%;}
+#tracks .track.tie .horse[step='15']{left:70%;}
+#tracks .track.tie .horse[step='16']{left:75%;}
+#tracks .track.tie .horse[step='17']{left:80%;}
+#tracks .track.tie .horse[step='18']{left:85%;}
+#tracks .track.tie .horse[step='19']{left:90%;}
+#tracks .track.tie .horse[step='20']{left:95%;}
+#results{
+  margin-left:2em;
+  display:grid;
+  grid-auto-flow:column;
+  justify-content:flex-start;
+  gap:1em;
+}
+#results .tie.result{
+  background-color:ivory;
+  border-radius:1em;
+  padding:.5em 1em;
+  border:solid .2em gray;
+  height:max-content;
+}
+#results .tie.result strong{
+  text-decoration:underline;
+}
+#results .tie.result button{
+  width:100%;
+}

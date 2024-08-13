@@ -1,0 +1,34 @@
+<title>Tie demonstration</title>
+
+<meta charset='utf8'>
+<link rel='stylesheet' href='race.css'>
+
+<div id='header'>
+  <em>View the source-code for this demonstration <a href='github.com/tukkek/tie/demonstration//'>here</a>.</em>
+  <template class='controls'><div class='controls'>
+    <div class='entrants'>Horses racing: <input type='number' min='2' value='5'></div>
+    <button id='race'>Go!</button>
+  </div></template>
+</div>
+
+<div id='tracks'>
+  <template class='track'><div class='track'>
+    <span class='name'>Horse $?</span>
+    <div class='horse' step='1'><div class='flipped'>🐎</div></div>
+  </div></template>
+</div>
+
+<div id='results'>
+  <template class='result'><div class='result'>
+    <strong>Race results:</strong>
+    <ol class='result'>
+      <template class='time'><li></li></template>
+    </ol>
+    <button>Remove these results</button>
+  </div></template>
+</div>
+
+<script type='module'>
+  import * as race from './race.js'
+  race.setup()
+</script>
