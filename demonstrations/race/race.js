@@ -1,4 +1,4 @@
-import * as tie from '../tie.js'
+import * as tie from '../../tie.js'
 
 const CONTROLS=new tie.Template('.controls').create()
 const TRACKS=document.querySelector('#tracks')
