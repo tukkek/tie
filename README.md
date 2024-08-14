@@ -19,7 +19,7 @@ There are multiple ways to install Tie. You can:
 
 ## Demonstrations and commented examples
 
-Tie is a tiny, elegant library and as such simple examples should be enough to explore its functions. The code for both demonstrations can be found here: https://github.com/tukkek/tie/tree/main/demonstrations/
+Tie is a tiny, elegant library and as such simple examples should be enough to explore its features. The code for both demonstrations can be found here: https://github.com/tukkek/tie/tree/main/demonstrations/
 
 ### Template management
 
@@ -38,12 +38,12 @@ The comments in these two sections of code should provide a good overview of Tie
 This next demonstration show-cases Tie's two-way reactive functionalty (HTML to Java Script and vice-versa). Access the demonstration here: https://tukkek.github.io/tie/demonstrations/react/react.html
 
 The library features being high-lighted in this case are:
-- `template.react()`: registers a call-back to any default event in the HTML page.
+- `template.react()`: registers a call-back to any default event in the clone tree.
 - `template.listen()`: as `react()` but reacts to only a single element at a time.
 - `template.trap()`: enables reacting to property changes in a Java Script object.
 - `template.bind()`: registers the call-backs for the trapped Java Script object.
 
-Keep in mind that you can always access all the normal Java Script features you know and love via the `template.root` element, which is a template clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
+Keep in mind that you can always access all the normal Java Script features you know and love via the `template.root` element, which is a template-clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 

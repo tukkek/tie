@@ -41,12 +41,11 @@ export class Template{
    * have a single root element (direct child descendant)! This can
    * be easily achieved by wrapping the template's content in a "div".
    * 
-   * @param {string} selector A CSS selector. For example: ".name" 
-   * will select "template.name"
-   * @param {string} classname For your convenience, this class 
-   * name is added to all root clone elements. If set to false
-   * or an empty string, will not add any class name to the
-   * root element.
+   * @param {string} selector A CSS selector. For example: 
+   * "#mytemplate" will select "template#mytemplate".
+   * @param {string} classname For your convenience, this class-name 
+   * is added to all root clone elements. If set to false, will not 
+   * add any class-name to the root element.
    */
   constructor(selector,classname='tie'){
     selector=`template${selector}`
@@ -61,7 +60,7 @@ export class Template{
   
   /** 
    * Appends the root element to the template's parent 
-   * element by default. Returns this Template instance,
+   * element by default. Returns this template instance,
    * for call-chaining.
    * 
    * @param {element} parent If present, append to this 
@@ -74,7 +73,7 @@ export class Template{
   }
 
   /** 
-   * Listen for an event from a single target-element.
+   * Listen for a default event from a single target-element.
    * 
    * @param {string} selector Given a CSS selector...
    * @param {function} callback Registers a call-
@@ -152,7 +151,7 @@ export class Template{
   
   /**
    * @param {string} attribute Find an element that has this HTML attribute
-   * and returns the attribute's value.
+   * and return the attribute's value.
    */
   get(attribute){return this.select(`*[${attribute}]`).getAttribute(attribute)}
   

@@ -27,7 +27,7 @@ class Result{
     // Same as above, short for view.root.querySelectorAll():
     list=view.selectAll('ol')[0]
     for(let t of race.times){
-      // Clone new instance for the "time" template:
+      // Clone new instance from the "time" template:
       let item=new tie.Template('.time')
       // Append, this time using an explicit parent:
       item.create(list)
