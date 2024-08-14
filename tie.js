@@ -1,6 +1,6 @@
 /** 
  * Determines per-element default listener event types for 
- * "template.listen()", * "template.deafen()", "template.react()" 
+ * "template.listen()", "template.deafen()", "template.react()" 
  * and "template.ignore()". 
  * <br><br>
  * The supported elements (and event types) are:
@@ -33,14 +33,14 @@ class Binding{
  * @property {element} root A reference to the root element cloned 
  * from the template (wil be referred to as the "template's clone").
  * @property {map} bindings A map with arrays of call-back functions
- * (registered with "template.bind()") by proxy instances (created
- * with "template.trap()").
+ * by property names (registered with "template.bind()").
  */
 export class Template{
   /** 
    * Finds a template tag, stores it as "template.element" and 
    * clones it as "template.root". Note that templates must 
-   * have a single root element (direct child descendant)!
+   * have a single root element (direct child descendant)! This can
+   * be easily achieved by wrapping the template's content in a "div".
    * 
    * @param {string} selector A CSS selector. For example: ".name" 
    * will select "template.name"
@@ -75,11 +75,11 @@ export class Template{
   }
 
   /** 
-   * Listen for an event from a single target element.
+   * Listen for an event from a single target-element.
    * 
    * @param {string} selector Given a CSS selector...
    * @param {function} callback Registers a call-
-   * back of the target element's default event type.
+   * back of the target-element's default event type.
    */
   listen(selector,callback){
     let v=this.root.querySelector(selector)
@@ -89,6 +89,9 @@ export class Template{
   /** 
    * Given the same parameters, removes a listener previously
    * registered with "template.listen()". 
+   * 
+   * @param {string} selector Same value as passed to "template.listen()".
+   * @param {function} callback Same value as passed to "template.listen()".
    */
   deafen(selector,callback){
     let v=this.root.querySelector(selector)
@@ -96,7 +99,7 @@ export class Template{
   }
   
   /**
-   * React to events from any interactive element in the
+   * React to events from all interactive element in the
    * clone sub-tree. For example: to register a single function
    * that will render a preview when any input in a form is changed.
    * 
@@ -144,7 +147,7 @@ export class Template{
    * "data-' prefix.
    * 
    * @param {string} attribute Find an element that has this HTML attribute...
-   * @param {string} value And sets the attribute to this value.
+   * @param {string} value Then set the attribute to this value.
    */
   set(attribute,value){this.select(`*[${attribute}]`).setAttribute(attribute,value)}
   
@@ -161,7 +164,7 @@ export class Template{
    * target's original reference and only use the returned proxy.
    * <br><br>
    * Each template instance is designed to trap a single object. Consider 
-   * using more templates or create Proxy instances in client-code instead 
+   * using more templates or creating Proxy instances in client-code instead 
    * of calling this method more than once per instance.
    * 
    * @param {object} target An object instance. If not provided, will 
@@ -181,9 +184,9 @@ export class Template{
    * 
    * @param {string} property A property name. For example: a property 
    * "p" for a previously-trapped "o" object instance will bind "o.p".
-   * @param {function} callback Will be called whenever the bound
-   * property of the previously-trapped object is changed. This function
-   * will be called with the same arguments as: https://mdn.io/handler.set()
+   * @param {function} callback Will be called whenever the bound-property 
+   * of the previously-trapped-object is changed. This function will be 
+   * called with the same arguments as: https://mdn.io/handler.set()
    */
   bind(property,callback){
     let bindings=this.bindings

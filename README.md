@@ -39,7 +39,7 @@ The comments in these two sections of code should provide a good overview of Tie
 1. First this HTML section that defines two templates and their one-to-many relationship: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.html#L21
 2. Then this Java-script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.js#L13
 
-[^POJO]: https://en.wikipedia.org/wiki/Plain_old_Java_object
+[^POJO]: Plain-old Java-script object https://en.wikipedia.org/wiki/Plain_old_Java_object
 
 ### Reactive features
 
@@ -49,7 +49,7 @@ The library features being high-lighted in this case are:
 - `template.react()`: registers a call-back to any default event in the HTML page.
 - `template.listen()`: as `react()` but reacts to only a single element at a time.
 - `template.trap()`: enables reacting to property changes in a Java-script object.
-- `pojo.bind()`: once enabled, registers the callbacks for the Java-script object.
+- `template.bind()`: registers the call-backs for the trapped Java-script object.
 
 Keep in mind that you can always access all the normal Java-script features you know and love via the `template.root` element, which is a template clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
 
@@ -57,7 +57,7 @@ The full commented code is pretty-self explanatory in itself. You can read it he
 
 ## Documentation
 
-The demonstrations cover the majority of Tie's features but Tie's API documentation thoroughly documents the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full as it's also pretty short, at around only a dozen methods described or so.
+The demonstrations cover the majority of Tie's features but Tie's API documentation thoroughly documents the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full as it's also pretty short, at around only a dozen methods or so described.
 
 - The full `Template` class API can be found here: https://tukkek.github.io/tie/documentation/Template.html
 - The element and event types supported by `template.listen()` and `template.react()` are listed here: https://tukkek.github.io/tie/documentation/global.html
