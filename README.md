@@ -21,6 +21,8 @@ There are multiple ways to install Tie. You can:
 
 Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of its methods, so performance should be typical for most Java-script scenarios. If that's not enough, a cached version[^C] should be twice as fast.
 
+For `template.trap()` and `template.bind()`, Tie uses the native Proxy object. You can test their performance here: https://www.measurethat.net/Benchmarks/Show/6274/4/access-to-proxy-vs-object
+
 [^C]: *Implement cached templates* https://github.com/tukkek/tie/issues/3
 
 ## Demonstrations and commented examples
@@ -53,7 +55,7 @@ Keep in mind that you can always access all the normal Java-script features you 
 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
-## Docementation
+## Documentation
 
 The demonstrations cover the majority of Tie's features but Tie's API documentation thoroughly documents the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full as it's also pretty short, at around only a dozen methods described or so.
 
