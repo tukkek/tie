@@ -25,11 +25,11 @@ Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of i
 
 ## Demonstration and commented examples
 
-Tie is a small (and hopefully elegant) library and as such a simple example should be enough to show-case most of its functions. You can open this link to see it in action while you read through this section: https://tukkek.github.io/tie/demonstrations/race.html
+Tie is a small (and hopefully elegant) library and as such a simple example should be enough to show-case most of its functions. You can open this link to see it in action while you read through this section: https://tukkek.github.io/tie/demonstrations/race/race.html
 
 The comments in these two sections of code should provide a good overview of Tie's approach to template management:
-1. First this HTML section that defines two templates and their one-to-many relationship: https://github.com/tukkek/tie/blob/main/demonstrations/race.html#L21
-2. Then this Java-script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstrations/race.js#L13
+1. First this HTML section that defines two templates and their one-to-many relationship: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.html#L21
+2. Then this Java-script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.js#L13
 
 The full demonstration code is here: https://github.com/tukkek/tie/tree/main/demonstrations/
 
