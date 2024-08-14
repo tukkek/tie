@@ -49,7 +49,8 @@ export class Template{
   
   /** 
    * Appends the root element to the template's parent 
-   * element by default.
+   * element by default. Returns this Template instance,
+   * for call-chaining.
    * 
    * @param {element} parent If present, append to this 
    * element instead. 
