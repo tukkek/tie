@@ -31,15 +31,19 @@ export class Template{
    * have a single root element (direct child descendant)!
    * 
    * @param {string} selector A CSS selector. For example: ".name" 
-   * will select "template.name".
+   * will select "template.name"
+   * @param {string} classname For your convenience, this class 
+   * name is added to all root clone elements. If set to false
+   * or an empty string, will not add any class name to the
+   * root element.
    */
-  constructor(selector){
+  constructor(selector,classname='tie'){
     selector=`template${selector}`
     let template=document.querySelector(selector)
     if(!template) throw `Cannot find template "${selector}"!`
     this.element=template
     let root=template.content.children[0].cloneNode(true)
-    root.classList.add('tie')
+    if(classname) root.classList.add(classname)
     this.root=root
   }
   
