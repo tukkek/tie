@@ -4,7 +4,7 @@ Tie is a tiny library for using templates easily and elegantly as building-block
 
 It is a minimalistic, opinionated[^O] library but it is based on the native design of the `<template>` tag and object-oriented-programming[^OOP] and as such should feel familiar to any web developer and integrate seamlessly with other technologies such as CSS and other frameworks, libraries and tool-chains.
 
-Tie is a 100% pure Javascript library. No servers, builds or frameworks.
+Tie is a 100% pure Javascript library. No servers, frameworks or build-steps.
 
 [^O]: *What makes software opinionated?* https://imkylelambert.com/articles/opinionated-software
 [^OOP]: *Using classes* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
@@ -38,12 +38,12 @@ The comments in these two sections of code should provide a good overview of Tie
 This next demonstration show-cases Tie's two-way reactive functionalty (HTML to Java Script and vice-versa). Access the demonstration here: https://tukkek.github.io/tie/demonstrations/react/react.html
 
 The library features being high-lighted in this case are:
-- `template.react()`: registers a call-back to any default event in the clone tree.
+- `template.react()`: registers a call-back to all default events in the clone tree.
 - `template.listen()`: as `react()` but reacts to only a single element at a time.
 - `template.trap()`: enables reacting to property changes in a Java Script object.
 - `template.bind()`: registers the call-backs for the trapped Java Script object.
 
-Keep in mind that you can always access all the normal Java Script features you know and love via the `template.root` element, which is a template-clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
+Keep in mind that you can always access all the native Java Script features you know and love via the `template.root` element, which is a template-clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
@@ -58,6 +58,6 @@ The demonstrations cover the majority of Tie's features but the API documentatio
 
 Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of its methods, so performance should be typical for most Java Script scenarios. If that's not enough, a cached version[^C] should be twice as fast.
 
-For `template.trap()` and `template.bind()`, Tie uses the native Proxy object. You can test their its here: https://www.measurethat.net/Benchmarks/Show/6274/4/access-to-proxy-vs-object
+For `template.trap()` and `template.bind()`, Tie uses the native Proxy object. You can test their performance here: https://www.measurethat.net/Benchmarks/Show/6274/4/access-to-proxy-vs-object
 
 [^C]: *Implement cached templates* https://github.com/tukkek/tie/issues/3

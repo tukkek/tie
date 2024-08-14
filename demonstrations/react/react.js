@@ -48,7 +48,7 @@ class Counter{
   }
 }
 
-// For each example: create a template then react to events:
+// For each example, create a template then react to events:
 export function setup(){
   react()
   listen()
