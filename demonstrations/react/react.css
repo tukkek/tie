@@ -1,0 +1,36 @@
+body{
+  display:grid;
+  gap:2em;
+}
+.example.tie{
+  display:grid;
+  gap:.5em;
+}
+.example.tie>strong{
+  text-decoration:underline;
+}
+.example.tie>strong:after{
+  content:':';
+}
+.example.tie>div{
+  gap:1em;
+}
+.example.tie .submit{
+  display:none;
+}
+.example.tie .counter{
+  display:none;
+}
+.example[kind='submit'] .submit{
+  display:flex;
+  flex-direction:column;
+}
+.example[kind='counter'] .counter{
+  display:grid;
+}
+.example .counter .controls{
+  display:flex;
+  gap:1em;
+  margin:0 .5em;
+  font:large;
+}

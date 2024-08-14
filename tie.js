@@ -2,9 +2,9 @@
  * Determines per-element default listener event types for 
  * "template.listen()", * "template.deafen()", "template.react()" 
  * and "template.ignore()". 
- * 
+ * <br><br>
  * The supported elements (and event types) are:
- * 
+ * <br><br>
  * <ul>
  * <li>input (change)</li>
  * <li>textarea (change)</li>
@@ -13,6 +13,15 @@
  */
 const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
                         ['BUTTON','click'],])
+
+class Binding{
+  static set(target,property,value){
+    let success=Reflect.set(...arguments)
+    let bindings=target.template.bindings.get(property)
+    if(bindings) for(let b of bindings) b()
+    return success
+  }
+}
 
 /** 
  * Manages a cloned instance of a template tag. 
@@ -23,6 +32,9 @@ const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
  * cloned (will be referred to as the "cloned template").
  * @property {element} root A reference to the root element cloned 
  * from the template (wil be referred to as the "template's clone").
+ * @property {map} bindings A map with arrays of call-back functions
+ * (registered with "template.bind()") by proxy instances (created
+ * with "template.trap()").
  */
 export class Template{
   /** 
@@ -41,6 +53,7 @@ export class Template{
     selector=`template${selector}`
     let template=document.querySelector(selector)
     if(!template) throw `Cannot find template "${selector}"!`
+    this.bindings=new Map()//property:[callback,]
     this.element=template
     let root=template.content.children[0].cloneNode(true)
     if(classname) root.classList.add(classname)
@@ -126,8 +139,8 @@ export class Template{
    * or to store data in an attribute declared anywhere in your sub-tree. 
    * This can be useful in many cases, such as for selecting the element
    * with the CSS query: "*[attribute='value']". 
-   * 
-   * Note that the W3C suggests non-standard attribute names have the
+   * <br><br>
+   * Note that the W3C suggests non-standard attribute names should have the
    * "data-' prefix.
    * 
    * @param {string} attribute Find an element that has this HTML attribute...
@@ -140,4 +153,60 @@ export class Template{
    * and returns the attribute's value.
    */
   get(attribute){return this.select(`*[${attribute}]`).getAttribute(attribute)}
+  
+  /**
+   * Returns a proxy object with properties that can then be bound with 
+   * "template.bind()". Bound call-backs will only be called when using
+   * this method's returned proxy so it's good practice to discard the 
+   * target's original reference and only use the returned proxy.
+   * <br><br>
+   * Each template instance is designed to trap a single object. Consider 
+   * using more templates or create Proxy instances in client-code instead 
+   * of calling this method more than once per instance.
+   * 
+   * @param {object} target An object instance. If not provided, will 
+   * default to trapping this template instance.
+   */
+  trap(target=false){
+    let p=new Proxy(target||this,Binding)
+    p.template=this
+    return p
+  }
+
+  /**
+   * Binds a call-back to an object's property. The object must have been 
+   * previously-trapped with "template.trap()". Any number of properties 
+   * and call-backs can be registered, including multiple call-backs for a 
+   * single property.
+   * 
+   * @param {string} property A property name. For example: a property 
+   * "p" for a previously-trapped "o" object instance will bind "o.p".
+   * @param {function} callback Will be called whenever the bound
+   * property of the previously-trapped object is changed. This function
+   * will be called with the same arguments as: https://mdn.io/handler.set()
+   */
+  bind(property,callback){
+    let bindings=this.bindings
+    let callbacks=bindings.get(property)
+    if(!callbacks){
+      callbacks=[]
+      this.bindings.set(property,callbacks)
+    }
+    callbacks.push(callback)
+  }
+  
+  /**
+   * Removes a call-back binding registered with "template.bind()".
+   * 
+   * @param {string} property Same value as passed to "template.bind()".
+   * @param {function} callback Same value as passed to "template.bind()".
+   */
+  free(property,callback){
+    let callbacks=this.bindings.get(property)
+    if(!callbacks) return false
+    let i=callbacks.indexOf(callback)
+    if(i<0) return false
+    callbacks.splice(i,1)
+    return true
+  }
 }

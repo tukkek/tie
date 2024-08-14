@@ -1,0 +1,24 @@
+<title>Tie demonstration: reactive methods</title>
+
+<link rel='stylesheet' href='react.css'>
+
+<em>View the source-code for this demonstration <a href='github.com/tukkek/tie/demonstrations/react/'>here</a>.</em>
+
+<template class='example'>
+  <div class='example' kind='submit'>
+    <strong class='header'>Header</strong>
+    <div class='submit'>
+      <div><strong>React to:</strong> <input type='text' placeholder='Type something...'><button>Submit</button></div>
+      <div><strong>Reaction: </strong><span class='target'></span></div>
+    </div>
+    <div class='counter'>
+      <div><strong>Count:</strong> <span class='count'>0</span>.</div>
+      <div class='controls'><button class='more'>+</button><button class='less'>-</button></div>
+    </div>
+  </div>
+</template>
+
+<script type='module'>
+  import * as react from './react.js'
+  react.setup()
+</script>

@@ -231,6 +231,31 @@ from the template (wil be referred to as the "template's clone").</td>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>bindings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">map</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A map with arrays of call-back functions
+(registered with "template.bind()") by proxy instances (created
+with "template.trap()").</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -266,7 +291,7 @@ from the template (wil be referred to as the "template's clone").</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line27">line 27</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -322,6 +347,172 @@ from the template (wil be referred to as the "template's clone").</td>
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="bind"><span class="type-signature"></span>bind<span class="signature">(property, callback)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Binds a call-back to an object's property. The object must have been 
+previously-trapped with "template.trap()". Any number of properties 
+and call-backs can be registered, including multiple call-backs for a 
+single property.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A property name. For example: a property 
+"p" for a previously-trapped "o" object instance will bind "o.p".</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Will be called whenever the bound
+property of the previously-trapped object is changed. This function
+will be called with the same arguments as: https://mdn.io/handler.set()</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line188">line 188</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
             
@@ -441,7 +632,7 @@ element instead.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line58">line 58</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -530,7 +721,167 @@ registered with "template.listen()".
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line80">line 80</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="free"><span class="type-signature"></span>free<span class="signature">(property, callback)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Removes a call-back binding registered with "template.bind()".
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Same value as passed to "template.bind()".</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Same value as passed to "template.bind()".</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line204">line 204</a>
     </li></ul></dd>
     
 
@@ -664,7 +1015,7 @@ and returns the attribute's value.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line142">line 142</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -825,7 +1176,7 @@ back of the target element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line71">line 71</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -965,7 +1316,7 @@ supported interactive elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line93">line 93</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -1053,7 +1404,7 @@ supported interactive elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line122">line 122</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1187,7 +1538,7 @@ sub-tree element.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line110">line 110</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -1321,7 +1672,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line116">line 116</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -1409,7 +1760,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line119">line 119</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -1457,8 +1808,8 @@ multiple sub-tree elements.</td>
 or to store data in an attribute declared anywhere in your sub-tree. 
 This can be useful in many cases, such as for selecting the element
 with the CSS query: "*[attribute='value']". 
-
-Note that the W3C suggests non-standard attribute names have the
+<br><br>
+Note that the W3C suggests non-standard attribute names should have the
 "data-' prefix.
 </div>
 
@@ -1575,7 +1926,160 @@ Note that the W3C suggests non-standard attribute names have the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line136">line 136</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="trap"><span class="type-signature"></span>trap<span class="signature">(target)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns a proxy object with properties that can then be bound with 
+"template.bind()". Bound call-backs will only be called when using
+this method's returned proxy so it's good practice to discard the 
+target's original reference and only use the returned proxy.
+<br><br>
+Each template instance is designed to trap a single object. Consider 
+using more templates or create Proxy instances in client-code instead 
+of calling this method more than once per instance.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">An object instance. If not provided, will 
+default to trapping this template instance.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -1627,7 +2131,7 @@ Note that the W3C suggests non-standard attribute names have the
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 14 2024 11:20:42 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 14 2024 21:19:45 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
