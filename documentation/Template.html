@@ -57,7 +57,8 @@ Note that any CSS queries are only performed on the clone sub-tree
 <div class="description">
     Finds a template tag, stores it as "template.element" and 
 clones it as "template.root". Note that templates must 
-have a single root element (direct child descendant)!
+have a single root element (direct child descendant)! This can
+be easily achieved by wrapping the template's content in a "div".
 </div>
 
 
@@ -251,8 +252,7 @@ from the template (wil be referred to as the "template's clone").</td>
             
 
             <td class="description last">A map with arrays of call-back functions
-(registered with "template.bind()") by proxy instances (created
-with "template.trap()").</td>
+by property names (registered with "template.bind()").</td>
         </tr>
 
     
@@ -291,7 +291,7 @@ with "template.trap()").</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line39">line 39</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -441,9 +441,9 @@ single property.
 
             
 
-            <td class="description last">Will be called whenever the bound
-property of the previously-trapped object is changed. This function
-will be called with the same arguments as: https://mdn.io/handler.set()</td>
+            <td class="description last">Will be called whenever the bound-property 
+of the previously-trapped-object is changed. This function will be 
+called with the same arguments as: https://mdn.io/handler.set()</td>
         </tr>
 
     
@@ -484,7 +484,7 @@ will be called with the same arguments as: https://mdn.io/handler.set()</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line188">line 188</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -668,7 +668,7 @@ element instead.</td>
     
 
     
-    <h4 class="name" id="deafen"><span class="type-signature"></span>deafen<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deafen"><span class="type-signature"></span>deafen<span class="signature">(selector, callback)</span><span class="type-signature"></span></h4>
     
 
     
@@ -686,6 +686,78 @@ registered with "template.listen()".
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Same value as passed to "template.listen()".</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Same value as passed to "template.listen()".</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -721,7 +793,7 @@ registered with "template.listen()".
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line93">line 93</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -881,7 +953,7 @@ registered with "template.listen()".
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line204">line 204</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line207">line 207</a>
     </li></ul></dd>
     
 
@@ -1015,7 +1087,7 @@ and returns the attribute's value.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line155">line 155</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -1059,7 +1131,7 @@ and returns the attribute's value.</td>
 
 
 <div class="description">
-    Listen for an event from a single target element.
+    Listen for an event from a single target-element.
 </div>
 
 
@@ -1135,7 +1207,7 @@ and returns the attribute's value.</td>
             
 
             <td class="description last">Registers a call-
-back of the target element's default event type.</td>
+back of the target-element's default event type.</td>
         </tr>
 
     
@@ -1220,7 +1292,7 @@ back of the target element's default event type.</td>
 
 
 <div class="description">
-    React to events from any interactive element in the
+    React to events from all interactive element in the
 clone sub-tree. For example: to register a single function
 that will render a preview when any input in a form is changed.
 </div>
@@ -1316,7 +1388,7 @@ supported interactive elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line106">line 106</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -1404,7 +1476,7 @@ supported interactive elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line135">line 135</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line138">line 138</a>
     </li></ul></dd>
     
 
@@ -1538,7 +1610,7 @@ sub-tree element.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line123">line 123</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line126">line 126</a>
     </li></ul></dd>
     
 
@@ -1672,7 +1744,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line129">line 129</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -1760,7 +1832,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line132">line 132</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1885,7 +1957,7 @@ Note that the W3C suggests non-standard attribute names should have the
 
             
 
-            <td class="description last">And sets the attribute to this value.</td>
+            <td class="description last">Then set the attribute to this value.</td>
         </tr>
 
     
@@ -1926,7 +1998,7 @@ Note that the W3C suggests non-standard attribute names should have the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line149">line 149</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -1976,7 +2048,7 @@ this method's returned proxy so it's good practice to discard the
 target's original reference and only use the returned proxy.
 <br><br>
 Each template instance is designed to trap a single object. Consider 
-using more templates or create Proxy instances in client-code instead 
+using more templates or creating Proxy instances in client-code instead 
 of calling this method more than once per instance.
 </div>
 
@@ -2079,7 +2151,7 @@ default to trapping this template instance.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line170">line 170</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line173">line 173</a>
     </li></ul></dd>
     
 
@@ -2131,7 +2203,7 @@ default to trapping this template instance.</td>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 14 2024 21:19:45 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 14 2024 22:16:43 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
