@@ -17,7 +17,13 @@ const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
 /** 
  * Manages a cloned instance of a template tag. 
  * Note that any CSS queries are only performed on the clone sub-tree 
- * (other than the one provided in the constructor). */
+ * (other than the one provided in the constructor). 
+ * 
+ * @property {element} template A reference to the template being 
+ * cloned (will be referred to as the "cloned template").
+ * @property {element} root A reference to the root element cloned 
+ * from the template (wil be referred to as the "template's clone").
+ */
 export class Template{
   /** 
    * Finds a template tag, stores it as "template.element" and 
