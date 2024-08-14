@@ -4,7 +4,6 @@
  * and "template.ignore()". 
  * <br><br>
  * The supported elements (and event types) are:
- * <br><br>
  * <ul>
  * <li>input (change)</li>
  * <li>textarea (change)</li>
@@ -31,7 +30,7 @@ class Binding{
  * @property {element} template A reference to the template being 
  * cloned (will be referred to as the "cloned template").
  * @property {element} root A reference to the root element cloned 
- * from the template (wil be referred to as the "template's clone").
+ * from the template (referred as the "template's clone").
  * @property {map} bindings A map with arrays of call-back functions
  * by property names (registered with "template.bind()").
  */
@@ -99,12 +98,12 @@ export class Template{
   }
   
   /**
-   * React to events from all interactive element in the
+   * React to events from all interactive elements in the
    * clone sub-tree. For example: to register a single function
    * that will render a preview when any input in a form is changed.
    * 
    * @param {function} callback Registers a call-back to all 
-   * supported interactive elements, using each element's default event type.
+   * supported elements, using each element's default event type.
    */
   react(callback){
     for(let d of DEFAULTS.keys()) 
@@ -160,8 +159,8 @@ export class Template{
   /**
    * Returns a proxy object with properties that can then be bound with 
    * "template.bind()". Bound call-backs will only be called when using
-   * this method's returned proxy so it's good practice to discard the 
-   * target's original reference and only use the returned proxy.
+   * this method's returned proxy so it's good practice to discard the original 
+   * reference.
    * <br><br>
    * Each template instance is designed to trap a single object. Consider 
    * using more templates or creating Proxy instances in client-code instead 

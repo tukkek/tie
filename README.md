@@ -17,47 +17,47 @@ There are multiple ways to install Tie. You can:
 * Download the latest version as a script (right-click and save-as): https://raw.githubusercontent.com/tukkek/tie/main/tie.js
 * Import the latest version directly from a module: `import * as tie from 'https://tukkek.github.io/tie/tie.js'`
 
-## Performance
-
-Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of its methods, so performance should be typical for most Java-script scenarios. If that's not enough, a cached version[^C] should be twice as fast.
-
-For `template.trap()` and `template.bind()`, Tie uses the native Proxy object. You can test their performance here: https://www.measurethat.net/Benchmarks/Show/6274/4/access-to-proxy-vs-object
-
-[^C]: *Implement cached templates* https://github.com/tukkek/tie/issues/3
-
 ## Demonstrations and commented examples
 
 Tie is a tiny, elegant library and as such simple examples should be enough to explore its functions. The code for both demonstrations can be found here: https://github.com/tukkek/tie/tree/main/demonstrations/
 
 ### Template management
 
-This demonstration shows the library's basic template-based operations, such as: creation; insertion; reacting to native Java-script events; and how to access the underlying HTML elements te write the POJO code you already know[^POJO].
+This demonstration shows the library's basic template-based operations, such as: creation; insertion; reacting to native Java Script events; and how to access the underlying HTML elements to write the POJO code you already know[^POJO].
 
-Open this link to see this demonstration in action: https://tukkek.github.io/tie/demonstrations/race/race.html
+Open this link to see the demonstration in action: https://tukkek.github.io/tie/demonstrations/race/race.html
 
 The comments in these two sections of code should provide a good overview of Tie's approach to template management:
 1. First this HTML section that defines two templates and their one-to-many relationship: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.html#L21
-2. Then this Java-script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.js#L13
+2. Then this Java Script method that uses Tie to manage multiple instances of each template: https://github.com/tukkek/tie/blob/main/demonstrations/race/race.js#L13
 
-[^POJO]: Plain-old Java-script object https://en.wikipedia.org/wiki/Plain_old_Java_object
+[^POJO]: Plain-old Java Script object https://en.wikipedia.org/wiki/Plain_old_Java_object
 
 ### Reactive features
 
-This next demonstration show-cases Tie's two-way reactive functionalty. Access the demonstration here: https://tukkek.github.io/tie/demonstrations/react/react.html
+This next demonstration show-cases Tie's two-way reactive functionalty (HTML to Java Script and vice-versa). Access the demonstration here: https://tukkek.github.io/tie/demonstrations/react/react.html
 
 The library features being high-lighted in this case are:
 - `template.react()`: registers a call-back to any default event in the HTML page.
 - `template.listen()`: as `react()` but reacts to only a single element at a time.
-- `template.trap()`: enables reacting to property changes in a Java-script object.
-- `template.bind()`: registers the call-backs for the trapped Java-script object.
+- `template.trap()`: enables reacting to property changes in a Java Script object.
+- `template.bind()`: registers the call-backs for the trapped Java Script object.
 
-Keep in mind that you can always access all the normal Java-script features you know and love via the `template.root` element, which is a template clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
+Keep in mind that you can always access all the normal Java Script features you know and love via the `template.root` element, which is a template clone's root element. This allows you, for example, to register non-default event listeners which aren't covered by `template.react()` and `template.listen()`.
 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
 ## Documentation
 
-The demonstrations cover the majority of Tie's features but Tie's API documentation thoroughly documents the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full as it's also pretty short, at around only a dozen methods or so described.
+The demonstrations cover the majority of Tie's features but the API documentation thoroughly describes the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full (it's also pretty short, at around only a dozen contained methods or so).
 
 - The full `Template` class API can be found here: https://tukkek.github.io/tie/documentation/Template.html
-- The element and event types supported by `template.listen()` and `template.react()` are listed here: https://tukkek.github.io/tie/documentation/global.html
+- Elements and default event types supported by `template.listen()` and `template.react()` are listed here: https://tukkek.github.io/tie/documentation/global.html
+
+## Performance
+
+Tie uses `element.querySelector()` or `element.querySelectorAll()` for most of its methods, so performance should be typical for most Java Script scenarios. If that's not enough, a cached version[^C] should be twice as fast.
+
+For `template.trap()` and `template.bind()`, Tie uses the native Proxy object. You can test their its here: https://www.measurethat.net/Benchmarks/Show/6274/4/access-to-proxy-vs-object
+
+[^C]: *Implement cached templates* https://github.com/tukkek/tie/issues/3
