@@ -40,6 +40,9 @@ export class Template{
    * clones it as "template.root". Note that templates must 
    * have a single root element (direct child descendant)! This can
    * be easily achieved by wrapping the template's content in a "div".
+   * <br><br>
+   * Create a new instance for each clone to be managed. Do not re-use
+   * the same Template object to "template.create()" multiple clones.
    * 
    * @param {string} selector A CSS selector. For example: 
    * "#mytemplate" will select "template#mytemplate".
