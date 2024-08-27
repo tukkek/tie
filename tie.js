@@ -62,7 +62,7 @@ export class Clone{
   }
   
   /** 
-   * Appends the root element to the clone's parent 
+   * Appends the root element to the template's parent 
    * element by default. Returns this clone instance,
    * for call-chaining.
    * <br><br>

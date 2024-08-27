@@ -47,6 +47,16 @@ Keep in mind that you can always access all the native Java Script features you 
 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
+### Clones as classes
+
+This demonstration features the use of Clone sub-classes as building-blocks of a simple web application. Since Clones are normal Java Script classes, they can be used with common object-oriented techniques such as creating hierarchies, compositions, aggrgations...
+
+View it in action here: https://tukkek.github.io/tie/demonstrations/filter/filter.html
+
+The demonstration has a Clone sub-class for the filter widget and another for every individual item. By modelling the module like this, it's possibe to make use Tie's convenience methods alongside domain-specific methods in order to write simple, short and re-usable classes built using 100% pure Java Script.
+
+You can read the code for the two classes here: https://github.com/tukkek/tie/blob/main/demonstrations/filter/filter.js
+
 ## Documentation
 
 The demonstrations cover the majority of Tie's features but the API documentation thoroughly describes the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full (it's also pretty short, at around only a dozen contained methods or so).

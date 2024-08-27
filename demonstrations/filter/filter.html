@@ -1,0 +1,25 @@
+<title>Tie demonstration: filter</title>
+
+<link rel='stylesheet' href='./filter.css'>
+
+<p>Type on the input bar to filter out the items. Press Enter to select the first item showing.</p>
+
+<p>The selected item is: <span id='result'>none yet</span>!</p>
+
+<div>
+  <template id='filter'>
+    <div class='filter'>
+      <input type='text' placeholder='Filter the items...'>
+      <div class='items'>
+        <template id='item'><span>An item!</span></template>
+      </div>
+    </div>
+  </template>
+</div>
+
+<div id='footer'><em>View the source-code for this demonstration <a href='https://github.com/tukkek/tie/tree/main/demonstrations/filter/'>here</a>.</em></div>
+
+<script type='module'>
+  import * as filter from './filter.js'
+  filter.setup()
+</script>
