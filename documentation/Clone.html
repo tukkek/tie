@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Template</title>
+    <title>JSDoc: Class: Clone</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Template</h1>
+    <h1 class="page-title">Class: Clone</h1>
 
     
 
@@ -28,11 +28,11 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Template<span class="signature">(selector, classname)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Clone<span class="signature">(selector, classname)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Manages a cloned instance of a template tag. 
-Note that any CSS queries are only performed on the clone sub-tree 
-(other than the one provided in the constructor).</div>
+            <div class="class-description">Manages a cloned instance of a template tag.  Note that any searches 
+are only performed on the clone's sub-tree (other than the constructor's
+CSS selector).</div>
         
     
 </header>
@@ -47,7 +47,7 @@ Note that any CSS queries are only performed on the clone sub-tree
     
 
     
-    <h4 class="name" id="Template"><span class="type-signature"></span>new Template<span class="signature">(selector, classname)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Clone"><span class="type-signature"></span>new Clone<span class="signature">(selector, classname)</span><span class="type-signature"></span></h4>
     
 
     
@@ -55,13 +55,14 @@ Note that any CSS queries are only performed on the clone sub-tree
 
 
 <div class="description">
-    Finds a template tag, stores it as "template.element" and 
-clones it as "template.root". Note that templates must 
-have a single root element (direct child descendant)! This can
-be easily achieved by wrapping the template's content in a "div".
+    Finds a template tag, stores it as "clone.template" and 
+clones its content as "clone.root". Note that clones must have a single 
+root element (direct child descendant). This can be easily achieved by 
+wrapping the template's content inside a "div" tag.
 <br><br>
-Create a new instance for each clone to be managed. Do not re-use
-the same Template object to "template.create()" multiple clones.
+Nested templates can't be accessed until the parent tag has been
+inserted into the DOM tree. If problematic, don't nest your template
+tags to avoid this issue.
 </div>
 
 
@@ -119,8 +120,8 @@ the same Template object to "template.create()" multiple clones.
                 </td>
             
 
-            <td class="description last">A CSS selector. For example: 
-"#mytemplate" will select "template#mytemplate".</td>
+            <td class="description last">A CSS selector for the template tag to be cloned.
+For example: "#mytemplate" or "template#mytemplate".</td>
         </tr>
 
     
@@ -150,8 +151,8 @@ the same Template object to "template.create()" multiple clones.
             
 
             <td class="description last">For your convenience, this class-name 
-is added to all root clone elements. If set to false, will not 
-add any class-name to the root element.</td>
+is added to the root element of all clones. If set to "false", will 
+not add any class-name to the root element.</td>
         </tr>
 
     
@@ -205,7 +206,7 @@ add any class-name to the root element.</td>
 
             
 
-            <td class="description last">A reference to the template being 
+            <td class="description last">A reference to the template element being 
 cloned (will be referred to as the "cloned template").</td>
         </tr>
 
@@ -254,7 +255,7 @@ from the template (referred as the "template's clone").</td>
             
 
             <td class="description last">A map with arrays of call-back functions
-by property names (registered with "template.bind()").</td>
+by property names (registered with "clone.bind()").</td>
         </tr>
 
     
@@ -334,7 +335,7 @@ by property names (registered with "template.bind()").</td>
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Template.html">Template</a></dt>
+            <dt><a href="Clone.html">Clone</a></dt>
             <dd></dd>
         </dl>
     
@@ -365,9 +366,9 @@ by property names (registered with "template.bind()").</td>
 
 <div class="description">
     Binds a call-back to an object's property. The object must have been 
-previously-trapped with "template.trap()". Any number of properties 
-and call-backs can be registered, including multiple call-backs for a 
-single property.
+previously-trapped with "clone.trap()". Any number of properties 
+and call-backs can be registered, including multiple call-backs for 
+the same property.
 </div>
 
 
@@ -486,7 +487,7 @@ called with the same arguments as: https://mdn.io/handler.set()</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line192">line 192</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line198">line 198</a>
     </li></ul></dd>
     
 
@@ -530,9 +531,12 @@ called with the same arguments as: https://mdn.io/handler.set()</td>
 
 
 <div class="description">
-    Appends the root element to the template's parent 
-element by default. Returns this template instance,
+    Appends the root element to the clone's parent 
+element by default. Returns this clone instance,
 for call-chaining.
+<br><br>
+Always create a new Clone instance for each clone to be managed. 
+"clone.create()" won't clone the template again by itself.
 </div>
 
 
@@ -634,7 +638,7 @@ element instead.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line72">line 72</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line75">line 75</a>
     </li></ul></dd>
     
 
@@ -679,7 +683,7 @@ element instead.</td>
 
 <div class="description">
     Given the same parameters, removes a listener previously
-registered with "template.listen()".
+registered with "clone.listen()".
 </div>
 
 
@@ -731,7 +735,7 @@ registered with "template.listen()".
 
             
 
-            <td class="description last">Same value as passed to "template.listen()".</td>
+            <td class="description last">Same value as passed to "clone.listen()".</td>
         </tr>
 
     
@@ -754,7 +758,7 @@ registered with "template.listen()".
 
             
 
-            <td class="description last">Same value as passed to "template.listen()".</td>
+            <td class="description last">Same value as passed to "clone.listen()".</td>
         </tr>
 
     
@@ -795,7 +799,7 @@ registered with "template.listen()".
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line97">line 97</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -839,7 +843,7 @@ registered with "template.listen()".
 
 
 <div class="description">
-    Removes a call-back binding registered with "template.bind()".
+    Removes a call-back binding registered with "clone.bind()".
 </div>
 
 
@@ -891,7 +895,7 @@ registered with "template.listen()".
 
             
 
-            <td class="description last">Same value as passed to "template.bind()".</td>
+            <td class="description last">Same value as passed to "clone.bind()".</td>
         </tr>
 
     
@@ -914,7 +918,7 @@ registered with "template.listen()".
 
             
 
-            <td class="description last">Same value as passed to "template.bind()".</td>
+            <td class="description last">Same value as passed to "clone.bind()".</td>
         </tr>
 
     
@@ -955,7 +959,7 @@ registered with "template.listen()".
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line208">line 208</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line214">line 214</a>
     </li></ul></dd>
     
 
@@ -1089,7 +1093,7 @@ and return the attribute's value.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line159">line 159</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -1250,7 +1254,7 @@ back of the target-element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line85">line 85</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -1295,7 +1299,7 @@ back of the target-element's default event type.</td>
 
 <div class="description">
     React to events from all interactive elements in the
-clone sub-tree. For example: to register a single function
+clone's sub-tree. For example: to register a single function
 that will render a preview when any input in a form is changed.
 </div>
 
@@ -1390,7 +1394,7 @@ supported elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line110">line 110</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line113">line 113</a>
     </li></ul></dd>
     
 
@@ -1478,7 +1482,7 @@ supported elements, using each element's default event type.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line139">line 139</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -1612,7 +1616,7 @@ sub-tree element.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line127">line 127</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1746,7 +1750,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line133">line 133</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -1790,7 +1794,7 @@ multiple sub-tree elements.</td>
 
 
 <div class="description">
-    Lower-case alias for "template.selectAll()".
+    Lower-case alias for "clone.selectAll()".
 </div>
 
 
@@ -1834,7 +1838,7 @@ multiple sub-tree elements.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line136">line 136</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line139">line 139</a>
     </li></ul></dd>
     
 
@@ -2000,7 +2004,7 @@ Note that the W3C suggests non-standard attribute names should have the
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line153">line 153</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -2044,14 +2048,16 @@ Note that the W3C suggests non-standard attribute names should have the
 
 
 <div class="description">
-    Returns a proxy object with properties that can then be bound with 
-"template.bind()". Bound call-backs will only be called when using
+    Returns a proxy object whose properties can then be bound with 
+"clone.bind()". Bound call-backs will only be called when using
 this method's returned proxy so it's good practice to discard the original 
-reference.
+object's reference.
 <br><br>
-Each template instance is designed to trap a single object. Consider 
-using more templates or creating Proxy instances in client-code instead 
+Each clone instance is designed to trap a single object. Consider 
+using more clones or creating Proxy instances in client-code instead 
 of calling this method more than once per instance.
+<br><br>
+For internal use, adds a "proxy.clone" reference to this clone object.
 </div>
 
 
@@ -2111,8 +2117,9 @@ of calling this method more than once per instance.
                 </td>
             
 
-            <td class="description last">An object instance. If not provided, will 
-default to trapping this template instance.</td>
+            <td class="description last">An object instance to trap. If not provided, will 
+default to trapping this clone instance. Can be used to trap a different
+data or control object as well, using the clone to react to its changes.</td>
         </tr>
 
     
@@ -2153,7 +2160,7 @@ default to trapping this template instance.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line174">line 174</a>
+        <a href="tie.js.html">tie.js</a>, <a href="tie.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -2199,13 +2206,13 @@ default to trapping this template instance.</td>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Template.html">Template</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 20 2024 11:33:23 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 27 2024 15:18:49 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

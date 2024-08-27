@@ -28,8 +28,8 @@
         <article>
             <pre class="prettyprint source linenums"><code>/** 
  * Determines per-element default listener event types for 
- * "template.listen()", "template.deafen()", "template.react()" 
- * and "template.ignore()". 
+ * "clone.listen()", "clone.deafen()", "clone.react()" 
+ * and "clone.ignore()". 
  * &lt;br>&lt;br>
  * The supported elements (and event types) are:
  * &lt;ul>
@@ -44,61 +44,64 @@ const DEFAULTS=new Map([['INPUT','change'],['TEXTAREA','change'],
 class Binding{
   static set(target,property,value){
     let success=Reflect.set(...arguments)
-    let bindings=target.template.bindings.get(property)
+    let bindings=target.clone.bindings.get(property)
     if(bindings) for(let b of bindings) b()
     return success
   }
 }
 
 /** 
- * Manages a cloned instance of a template tag. 
- * Note that any CSS queries are only performed on the clone sub-tree 
- * (other than the one provided in the constructor). 
+ * Manages a cloned instance of a template tag.  Note that any searches 
+ * are only performed on the clone's sub-tree (other than the constructor's
+ * CSS selector). 
  * 
- * @property {element} template A reference to the template being 
+ * @property {element} template A reference to the template element being 
  * cloned (will be referred to as the "cloned template").
  * @property {element} root A reference to the root element cloned 
  * from the template (referred as the "template's clone").
  * @property {map} bindings A map with arrays of call-back functions
- * by property names (registered with "template.bind()").
+ * by property names (registered with "clone.bind()").
  */
-export class Template{
+export class Clone{
   /** 
-   * Finds a template tag, stores it as "template.element" and 
-   * clones it as "template.root". Note that templates must 
-   * have a single root element (direct child descendant)! This can
-   * be easily achieved by wrapping the template's content in a "div".
+   * Finds a template tag, stores it as "clone.template" and 
+   * clones its content as "clone.root". Note that clones must have a single 
+   * root element (direct child descendant). This can be easily achieved by 
+   * wrapping the template's content inside a "div" tag.
    * &lt;br>&lt;br>
-   * Create a new instance for each clone to be managed. Do not re-use
-   * the same Template object to "template.create()" multiple clones.
+   * Nested templates can't be accessed until the parent tag has been
+   * inserted into the DOM tree. If problematic, don't nest your template
+   * tags to avoid this issue.
    * 
-   * @param {string} selector A CSS selector. For example: 
-   * "#mytemplate" will select "template#mytemplate".
+   * @param {string} selector A CSS selector for the template tag to be cloned.
+   * For example: "#mytemplate" or "template#mytemplate".
    * @param {string} classname For your convenience, this class-name 
-   * is added to all root clone elements. If set to false, will not 
-   * add any class-name to the root element.
+   * is added to the root element of all clones. If set to "false", will 
+   * not add any class-name to the root element.
    */
   constructor(selector,classname='tie'){
-    selector=`template${selector}`
     let template=document.querySelector(selector)
     if(!template) throw `Cannot find template "${selector}"!`
-    this.bindings=new Map()//property:[callback,]
-    this.element=template
-    let root=template.content.children[0].cloneNode(true)
-    if(classname) root.classList.add(classname)
-    this.root=root
+    this.bindings=new Map()//property:[callback]
+    this.template=template
+    let c=template.content.children[0].cloneNode(true)
+    if(classname) c.classList.add(classname)
+    this.root=c
   }
   
   /** 
-   * Appends the root element to the template's parent 
-   * element by default. Returns this template instance,
+   * Appends the root element to the clone's parent 
+   * element by default. Returns this clone instance,
    * for call-chaining.
+   * &lt;br>&lt;br>
+   * Always create a new Clone instance for each clone to be managed. 
+   * "clone.create()" won't clone the template again by itself.
    * 
    * @param {element} parent If present, append to this 
    * element instead. 
    */
   create(parent=false){
-    if(!parent) parent=this.element.parentNode
+    if(!parent) parent=this.template.parentNode
     parent.appendChild(this.root)
     return this
   }
@@ -117,10 +120,10 @@ export class Template{
   
   /** 
    * Given the same parameters, removes a listener previously
-   * registered with "template.listen()". 
+   * registered with "clone.listen()". 
    * 
-   * @param {string} selector Same value as passed to "template.listen()".
-   * @param {function} callback Same value as passed to "template.listen()".
+   * @param {string} selector Same value as passed to "clone.listen()".
+   * @param {function} callback Same value as passed to "clone.listen()".
    */
   deafen(selector,callback){
     let v=this.root.querySelector(selector)
@@ -129,7 +132,7 @@ export class Template{
   
   /**
    * React to events from all interactive elements in the
-   * clone sub-tree. For example: to register a single function
+   * clone's sub-tree. For example: to register a single function
    * that will render a preview when any input in a form is changed.
    * 
    * @param {function} callback Registers a call-back to all 
@@ -141,7 +144,7 @@ export class Template{
         element.addEventListener(DEFAULTS.get(d),callback)
   }
   
-  /* Removes a call-back previously registered with "template.react()". */
+  /* Removes a call-back previously registered with "clone.react()". */
   ignore(callback){
     for(let d of DEFAULTS.keys())
       for(let element of this.root.querySelectorAll(d))
@@ -160,7 +163,7 @@ export class Template{
    */
   selectAll(selector){return this.root.querySelectorAll(selector)}
   
-  /** Lower-case alias for "template.selectAll()". */
+  /** Lower-case alias for "clone.selectAll()". */
   selectall(selector){return this.selectall(selector)}
   
   /** Removes the root element from the DOM-tree. */
@@ -187,29 +190,32 @@ export class Template{
   get(attribute){return this.select(`*[${attribute}]`).getAttribute(attribute)}
   
   /**
-   * Returns a proxy object with properties that can then be bound with 
-   * "template.bind()". Bound call-backs will only be called when using
+   * Returns a proxy object whose properties can then be bound with 
+   * "clone.bind()". Bound call-backs will only be called when using
    * this method's returned proxy so it's good practice to discard the original 
-   * reference.
+   * object's reference.
    * &lt;br>&lt;br>
-   * Each template instance is designed to trap a single object. Consider 
-   * using more templates or creating Proxy instances in client-code instead 
+   * Each clone instance is designed to trap a single object. Consider 
+   * using more clones or creating Proxy instances in client-code instead 
    * of calling this method more than once per instance.
+   * &lt;br>&lt;br>
+   * For internal use, adds a "proxy.clone" reference to this clone object.
    * 
-   * @param {object} target An object instance. If not provided, will 
-   * default to trapping this template instance.
+   * @param {object} target An object instance to trap. If not provided, will 
+   * default to trapping this clone instance. Can be used to trap a different
+   * data or control object as well, using the clone to react to its changes.
    */
   trap(target=false){
     let p=new Proxy(target||this,Binding)
-    p.template=this
+    p.clone=this
     return p
   }
 
   /**
    * Binds a call-back to an object's property. The object must have been 
-   * previously-trapped with "template.trap()". Any number of properties 
-   * and call-backs can be registered, including multiple call-backs for a 
-   * single property.
+   * previously-trapped with "clone.trap()". Any number of properties 
+   * and call-backs can be registered, including multiple call-backs for 
+   * the same property.
    * 
    * @param {string} property A property name. For example: a property 
    * "p" for a previously-trapped "o" object instance will bind "o.p".
@@ -228,10 +234,10 @@ export class Template{
   }
   
   /**
-   * Removes a call-back binding registered with "template.bind()".
+   * Removes a call-back binding registered with "clone.bind()".
    * 
-   * @param {string} property Same value as passed to "template.bind()".
-   * @param {function} callback Same value as passed to "template.bind()".
+   * @param {string} property Same value as passed to "clone.bind()".
+   * @param {function} callback Same value as passed to "clone.bind()".
    */
   free(property,callback){
     let callbacks=this.bindings.get(property)
@@ -252,13 +258,13 @@ export class Template{
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Template.html">Template</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 20 2024 11:33:23 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 27 2024 15:18:49 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -1,6 +1,6 @@
 import * as tie from '../../tie.js'
 
-const CONTROLS=new tie.Template('.controls').create()
+const CONTROLS=new tie.Clone('template.controls').create()
 const TRACKS=document.querySelector('#tracks')
 const TICK=100
 
@@ -13,7 +13,7 @@ class Result{
   static show(race){
     // Handle new instance of the "result" template
     // (the clone element is exposed as view.root):
-    let view=new tie.Template('.result')
+    let view=new tie.Clone('template.result')
     // Append the clone to template's parent element:
     view.create()
     // Register call-back for all interactive elements
@@ -28,7 +28,7 @@ class Result{
     list=view.selectAll('ol')[0]
     for(let t of race.times){
       // Clone new instance from the "time" template:
-      let item=new tie.Template('.time')
+      let item=new tie.Clone('template.time')
       // Append, this time using an explicit parent:
       item.create(list)
       let seconds=t.time.toFixed(1)
@@ -43,7 +43,7 @@ class Result{
 
 class Horse{
   constructor(name){
-    this.view=new tie.Template('.track')
+    this.view=new tie.Clone('template.track')
     this.name=name
     this.step=1
   }
