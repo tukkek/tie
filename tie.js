@@ -136,7 +136,7 @@ export class Clone{
   selectAll(selector){return this.root.querySelectorAll(selector)}
   
   /** Lower-case alias for "clone.selectAll()". */
-  selectall(selector){return this.selectall(selector)}
+  selectall(selector){return this.selectAll(selector)}
   
   /** Removes the root element from the DOM-tree. */
   remove(){this.root.remove()}
