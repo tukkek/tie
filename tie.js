@@ -233,3 +233,12 @@ export async function compose(name,parent){
   await load(name,'html','template',parent)
   await load(name,'css','style',parent)
 }
+
+/** Returns the result of <code>document.querySelector()</code>. */
+export function select(query){return document.querySelector(query)}
+
+/** Same as <code>selectAll()</code>. */
+export function selectall(query){return Array.from(document.querySelectorAll(query))}
+
+/** Returns the result of <code>document.querySelectorAll()</code>, wrapped in an array. */
+export function selectAll(query){return selectall(query)}
