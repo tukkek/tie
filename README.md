@@ -43,7 +43,7 @@ Keep in mind that you can always access all the native Java Script features you 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
 ## Clones as classes
-This demonstration features the use of Clone sub-classes as building-blocks of a simple web application. Since Clones are normal Java Script classes, they can be used with common object-oriented techniques such as creating hierarchies, compositions, aggrgations...
+This demonstration features the use of Clone sub-classes as building-blocks of a simple web application. Since Clones are normal Java Script classes, they can be used with common object-oriented techniques such as creating hierarchies, compositions, aggregations...
 
 View it in action here: https://tukkek.github.io/tie/demonstrations/filter/filter.html
 
