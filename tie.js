@@ -133,7 +133,9 @@ export class Clone{
    * @param {string} selector A CSS selector to find and return
    * multiple sub-tree elements.
    */
-  selectAll(selector){return this.root.querySelectorAll(selector)}
+  selectAll(selector){
+    return Array.from(this.root.querySelectorAll(selector))
+  }
 
   /** Lower-case alias for "clone.selectAll()". */
   selectall(selector){return this.selectAll(selector)}
