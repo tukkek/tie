@@ -133,7 +133,9 @@ export class Clone{
    * @param {string} selector A CSS selector to find and return
    * multiple sub-tree elements.
    */
-  selectAll(selector){return this.root.querySelectorAll(selector)}
+  selectAll(selector){
+    return Array.from(this.root.querySelectorAll(selector))
+  }
 
   /** Lower-case alias for "clone.selectAll()". */
   selectall(selector){return this.selectAll(selector)}
@@ -233,3 +235,12 @@ export async function compose(name,parent){
   await load(name,'html','template',parent)
   await load(name,'css','style',parent)
 }
+
+/** Returns the result of <code>document.querySelector()</code>. */
+export function select(query){return document.querySelector(query)}
+
+/** Same as <code>selectAll()</code>. */
+export function selectall(query){return Array.from(document.querySelectorAll(query))}
+
+/** Returns the result of <code>document.querySelectorAll()</code>, wrapped in an array. */
+export function selectAll(query){return selectall(query)}

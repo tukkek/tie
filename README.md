@@ -43,7 +43,7 @@ Keep in mind that you can always access all the native Java Script features you 
 The full commented code is pretty-self explanatory in itself. You can read it here: https://github.com/tukkek/tie/blob/main/demonstrations/react/react.js
 
 ## Clones as classes
-This demonstration features the use of Clone sub-classes as building-blocks of a simple web application. Since Clones are normal Java Script classes, they can be used with common object-oriented techniques such as creating hierarchies, compositions, aggrgations...
+This demonstration features the use of Clone sub-classes as building-blocks of a simple web application. Since Clones are normal Java Script classes, they can be used with common object-oriented techniques such as creating hierarchies, compositions, aggregations...
 
 View it in action here: https://tukkek.github.io/tie/demonstrations/filter/filter.html
 
@@ -52,14 +52,20 @@ The demonstration has a Clone sub-class for the filter widget and another for ev
 You can read the code for the two classes here: https://github.com/tukkek/tie/blob/main/demonstrations/filter/filter.js
 
 ## Bundles
-The Compose function is availabe to provide a way to bundle HTML and CSS files to modular Tie-components. Their contents will be inserted in respective Template and Style tags with the class-name provided.
+The Compose function is availabe to provide a way to bundle HTML and CSS files for modular Tie-components.
 
+Here the contents of `my-component.html` and `my-component.css` in the same path as the JS file will be inserted as `<template class='my-component'>` and `<style class='my-component'>`:
 ~~~js
 import * as tiem from './libraries/tie/tie.js'
 await tiem.compose('my-component',import.meta.url)
 ~~~
 
-In this example the contents of `my-component.html` and `my-component.css` in the same-path as the JS file will be inserted under `<template class='my-component'>` and `<style class='my-component'>`.
+In this second example we compose from a relative path:
+~~~js
+import * as tiem from '../../libraries/tie/tie.js'
+let url=new URL('../../libraries/my-component/',import.meta.url)
+await tiem.compose('my-component',url)
+~~~
 
 # Documentation
 The demonstrations cover the majority of Tie's features but the API documentation thoroughly describes the library and can be used as a reference while programming. It also contains a few reminders and tips so it's worth reading in full (it's also pretty short, at around only a dozen contained methods or so).

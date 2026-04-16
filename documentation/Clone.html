@@ -30,7 +30,7 @@
     
         <h2><span class="attribs"><span class="type-signature"></span></span>Clone<span class="signature">(selector, classname)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Manages a cloned instance of a template tag.  Note that any searches 
+            <div class="class-description">Manages a cloned instance of a template tag.  Note that any searches
 are only performed on the clone's sub-tree (other than the constructor's
 CSS selector).</div>
         
@@ -55,9 +55,9 @@ CSS selector).</div>
 
 
 <div class="description">
-    Finds a template tag, stores it as "clone.template" and 
-clones its content as "clone.root". Note that clones must have a single 
-root element (direct child descendant). This can be easily achieved by 
+    Finds a template tag, stores it as "clone.template" and
+clones its content as "clone.root". Note that clones must have a single
+root element (direct child descendant). This can be easily achieved by
 wrapping the template's content inside a "div" tag.
 <br><br>
 Nested templates can't be accessed until the parent tag has been
@@ -150,8 +150,8 @@ For example: "#mytemplate" or "template#mytemplate".</td>
                 </td>
             
 
-            <td class="description last">For your convenience, this class-name 
-is added to the root element of all clones. If set to "false", will 
+            <td class="description last">For your convenience, this class-name
+is added to the root element of all clones. If set to "false", will
 not add any class-name to the root element.</td>
         </tr>
 
@@ -206,7 +206,7 @@ not add any class-name to the root element.</td>
 
             
 
-            <td class="description last">A reference to the template element being 
+            <td class="description last">A reference to the template element being
 cloned (will be referred to as the "cloned template").</td>
         </tr>
 
@@ -230,7 +230,7 @@ cloned (will be referred to as the "cloned template").</td>
 
             
 
-            <td class="description last">A reference to the root element cloned 
+            <td class="description last">A reference to the root element cloned
 from the template (referred as the "template's clone").</td>
         </tr>
 
@@ -365,9 +365,9 @@ by property names (registered with "clone.bind()").</td>
 
 
 <div class="description">
-    Binds a call-back to an object's property. The object must have been 
-previously-trapped with "clone.trap()". Any number of properties 
-and call-backs can be registered, including multiple call-backs for 
+    Binds a call-back to an object's property. The object must have been
+previously-trapped with "clone.trap()". Any number of properties
+and call-backs can be registered, including multiple call-backs for
 the same property.
 </div>
 
@@ -420,7 +420,7 @@ the same property.
 
             
 
-            <td class="description last">A property name. For example: a property 
+            <td class="description last">A property name. For example: a property
 "p" for a previously-trapped "o" object instance will bind "o.p".</td>
         </tr>
 
@@ -444,8 +444,8 @@ the same property.
 
             
 
-            <td class="description last">Will be called whenever the bound-property 
-of the previously-trapped-object is changed. This function will be 
+            <td class="description last">Will be called whenever the bound-property
+of the previously-trapped-object is changed. This function will be
 called with the same arguments as: https://mdn.io/handler.set()</td>
         </tr>
 
@@ -531,11 +531,11 @@ called with the same arguments as: https://mdn.io/handler.set()</td>
 
 
 <div class="description">
-    Appends the root element to the template's parent 
+    Appends the root element to the template's parent
 element by default. Returns this clone instance,
 for call-chaining.
 <br><br>
-Always create a new Clone instance for each clone to be managed. 
+Always create a new Clone instance for each clone to be managed.
 "clone.create()" won't clone the template again by itself.
 </div>
 
@@ -596,7 +596,7 @@ Always create a new Clone instance for each clone to be managed.
                 </td>
             
 
-            <td class="description last">If present, append to this 
+            <td class="description last">If present, append to this
 element instead.</td>
         </tr>
 
@@ -1352,7 +1352,7 @@ that will render a preview when any input in a form is changed.
 
             
 
-            <td class="description last">Registers a call-back to all 
+            <td class="description last">Registers a call-back to all
 supported elements, using each element's default event type.</td>
         </tr>
 
@@ -1574,7 +1574,7 @@ supported elements, using each element's default event type.</td>
 
             
 
-            <td class="description last">A CSS selector to find and return a 
+            <td class="description last">A CSS selector to find and return a
 sub-tree element.</td>
         </tr>
 
@@ -1708,7 +1708,7 @@ sub-tree element.</td>
 
             
 
-            <td class="description last">A CSS selector to find and return 
+            <td class="description last">A CSS selector to find and return
 multiple sub-tree elements.</td>
         </tr>
 
@@ -1883,9 +1883,9 @@ multiple sub-tree elements.</td>
 
 <div class="description">
     Use this to alter a standard HTML attribute (such as an anchor's "href")
-or to store data in an attribute declared anywhere in your sub-tree. 
+or to store data in an attribute declared anywhere in your sub-tree.
 This can be useful in many cases, such as for selecting the element
-with the CSS query: "*[attribute='value']". 
+with the CSS query: "*[attribute='value']".
 <br><br>
 Note that the W3C suggests non-standard attribute names should have the
 "data-' prefix.
@@ -2048,13 +2048,13 @@ Note that the W3C suggests non-standard attribute names should have the
 
 
 <div class="description">
-    Returns a proxy object whose properties can then be bound with 
+    Returns a proxy object whose properties can then be bound with
 "clone.bind()". Bound call-backs will only be called when using
-this method's returned proxy so it's good practice to discard the original 
+this method's returned proxy so it's good practice to discard the original
 object's reference.
 <br><br>
-Each clone instance is designed to trap a single object. Consider 
-using more clones or creating Proxy instances in client-code instead 
+Each clone instance is designed to trap a single object. Consider
+using more clones or creating Proxy instances in client-code instead
 of calling this method more than once per instance.
 <br><br>
 For internal use, adds a "proxy.clone" reference to this clone object.
@@ -2117,7 +2117,7 @@ For internal use, adds a "proxy.clone" reference to this clone object.
                 </td>
             
 
-            <td class="description last">An object instance to trap. If not provided, will 
+            <td class="description last">An object instance to trap. If not provided, will
 default to trapping this clone instance. Can be used to trap a different
 data or control object as well, using the clone to react to its changes.</td>
         </tr>
@@ -2206,13 +2206,13 @@ data or control object as well, using the clone to react to its changes.</td>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DEFAULTS">DEFAULTS</a></li><li><a href="global.html#select">select</a></li><li><a href="global.html#selectAll">selectAll</a></li><li><a href="global.html#selectall">selectall</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Aug 27 2024 17:27:22 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Oct 23 2025 09:40:21 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
