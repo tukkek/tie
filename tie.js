@@ -225,7 +225,7 @@ export class Clone{
 
 async function load(name,extension,tag,parent){
   let element=document.createElement(tag)
-  element.classList.add(name)
+  if(extension=='html') element.classList.add(name)
   let body=await fetch(new URL(`${name}.${extension}`,parent))
   element.innerHTML=await body.text()
   document.body.appendChild(element)
