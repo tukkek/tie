@@ -223,6 +223,40 @@ export class Clone{
   }
 }
 
+class Dialog{
+  constructor(textp,classname,texts=[]){
+    let element=document.createElement('dialog')
+    for(let text of [classname,'tie']) element.classList.add(text)
+    this.element=element
+    let form=document.createElement('form')
+    form.method='dialog'
+    this.form=form
+    let text=document.createElement('p')
+    text.innerText=textp
+    form.appendChild(text)
+    element.appendChild(form)
+    for(let button of texts) this.add(button)
+  }
+
+  add(text,value=false){
+    let button=document.createElement('button')
+    button.innerText=text
+    button.value=value||text
+    let form=this.form
+    if(!form.children.length) button.autofocus=true
+    form.appendChild(button)
+  }
+
+  async show(){
+    return new Promise((call)=>{
+      let element=this.element
+      document.body.appendChild(element)
+      element.showModal()
+      element.onclose=()=>call.call(this,element.returnValue)
+    })
+  }
+}
+
 async function load(name,extension,tag,parent){
   let element=document.createElement(tag)
   if(extension=='html') element.classList.add(name)
@@ -244,3 +278,16 @@ export function selectall(query){return Array.from(document.querySelectorAll(que
 
 /** Returns the result of <code>document.querySelectorAll()</code>, wrapped in an array. */
 export function selectAll(query){return selectall(query)}
+
+/** Similar to <code>window.prompt()</code>. Style as <code>dialog.tie.confirm</code>. */
+export async function confirm(text){
+  let dialog=new Dialog(text,'confirm',['✗','✓'])
+  let result=await dialog.show()
+  return Promise.resolve(result=='✓')
+}
+
+/** Similar to <code>window.alert()</code>. Style as <code>dialog.tie.alert</code>. */
+export async function alert(text){
+  await new Dialog(text,'alert',['✓']).show()
+  return Promise.resolve()
+}
