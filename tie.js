@@ -227,6 +227,7 @@ class Dialog{
   constructor(textp,classname,texts=[]){
     let element=document.createElement('dialog')
     for(let text of [classname,'tie']) element.classList.add(text)
+    element.onkeyup=(event)=>this.press(event)
     this.element=element
     let form=document.createElement('form')
     form.method='dialog'
@@ -238,12 +239,13 @@ class Dialog{
     for(let button of texts) this.add(button)
   }
 
+  press(event){if(event.key=='Escape') this.element.close()}
+
   add(text,value=false){
     let button=document.createElement('button')
     button.innerText=text
     button.value=value||text
     let form=this.form
-    if(!form.children.length) button.autofocus=true
     form.appendChild(button)
   }
 
@@ -255,6 +257,8 @@ class Dialog{
 
   async show(){
     return new Promise((call)=>{
+      let buttons=this.form.children
+      buttons[buttons.length-1].autofocus=true
       let element=this.element
       document.body.appendChild(element)
       element.showModal()
