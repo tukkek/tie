@@ -231,10 +231,12 @@ class Dialog{
     this.element=element
     let form=document.createElement('form')
     form.method='dialog'
-    this.form=form
     let text=document.createElement('p')
     text.innerText=textp
+    let footer=document.createElement('footer')
+    this.footer=footer
     form.appendChild(text)
+    form.appendChild(footer)
     element.appendChild(form)
     for(let button of texts) this.add(button)
   }
@@ -245,8 +247,7 @@ class Dialog{
     let button=document.createElement('button')
     button.innerText=text
     button.value=value||text
-    let form=this.form
-    form.appendChild(button)
+    this.footer.appendChild(button)
   }
 
   close(){
@@ -257,7 +258,7 @@ class Dialog{
 
   async show(){
     return new Promise((call)=>{
-      let buttons=this.form.children
+      let buttons=this.footer.children
       buttons[buttons.length-1].autofocus=true
       let element=this.element
       document.body.appendChild(element)
