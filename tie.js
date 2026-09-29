@@ -247,12 +247,18 @@ class Dialog{
     form.appendChild(button)
   }
 
+  close(){
+    let element=this.element
+    element.remove()
+    return element.returnValue
+  }
+
   async show(){
     return new Promise((call)=>{
       let element=this.element
       document.body.appendChild(element)
       element.showModal()
-      element.onclose=()=>call.call(this,element.returnValue)
+      element.onclose=()=>call.call(this,this.close())
     })
   }
 }
